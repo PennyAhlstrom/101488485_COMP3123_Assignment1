@@ -4,6 +4,7 @@ const { signup, login } = require('../controllers/user.controller');
 const validate = require('../middleware/validate');
 const { signupValidator, loginValidator } = require('../validators/user.validators');
 
+// /api/v1/user
 router.post('/signup',  signupValidator, validate, signup); // 201 - created
 router.post('/login',  loginValidator, validate, login);  // 200 - ok
 
