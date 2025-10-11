@@ -15,10 +15,10 @@ router.get('/employees', listEmployees);
 router.post('/employees', createEmployee);
 
 // Get specified employee (by id)
-router.get('/employees/:eid', getEmployeeById);
+router.get('/employees/:emp_id', getEmployeeById);
 
 // Update employee by id
-router.put('/employees/:eid', updateEmployeeById);
+router.put('/employees/:emp_id', updateEmployeeById);
 
 // Delete by query param -> 204
 router.delete('/employees', deleteEmployeeById);

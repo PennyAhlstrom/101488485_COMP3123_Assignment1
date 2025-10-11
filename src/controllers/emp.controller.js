@@ -41,8 +41,8 @@ exports.createEmployee = async (req, res) => { // Add a new employee to the list
 // GET /api/v1/emp/employees/:eid  (code 200)
 exports.getEmployeeById = async (req, res) => {  // Find a specific employee
   try {
-    const { eid } = req.params;
-    const doc = await Employee.findById(eid);
+    const { emp_id } = req.params;
+    const doc = await Employee.findById(emp_id);
     if (!doc) return res.status(404).json({ status: false, message: 'Employee not found' });
     return res.status(200).json(toEmployeeDTO(doc));
   } catch (err) {
@@ -54,8 +54,8 @@ exports.getEmployeeById = async (req, res) => {  // Find a specific employee
 // PUT /api/v1/emp/employees/:eid (code 200)
 exports.updateEmployeeById = async (req, res) => {
   try {
-    const { eid } = req.params;
-    const updated = await Employee.findByIdAndUpdate(eid, req.body, { new: true }); // Update the fields passed from client
+    const { emp_id } = req.params;
+    const updated = await Employee.findByIdAndUpdate(emp_id, req.body, { new: true }); // Update the fields passed from client
     if (!updated) return res.status(404).json({ status: false, message: 'Employee not found' });
 
     // Spec wants only a message for 200
@@ -69,8 +69,8 @@ exports.updateEmployeeById = async (req, res) => {
 // DELETE /api/v1/emp/employees?eid=xxx (code 204 - no content (no response body needed))
 exports.deleteEmployeeById = async (req, res) => {
   try {
-    const { eid } = req.query;
-    const deleted = await Employee.findByIdAndDelete(eid);
+    const { emp_id } = req.query;
+    const deleted = await Employee.findByIdAndDelete(emp_id);
     if (!deleted) return res.status(404).json({ status: false, message: 'Employee not found' });
     return res.status(204).send();
   } catch (err) {
