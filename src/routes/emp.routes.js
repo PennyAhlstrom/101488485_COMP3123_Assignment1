@@ -16,19 +16,27 @@ const {
   deleteEmployeeValidator
 } = require('../validators/employee.validators');
 
+
+const auth = require('../middleware/auth');
+
+// Get requests doesnt require authentification but create, update and delete does
+// /api/v1/emp
+
 // GET all employees
 router.get('/employees', listEmployees);
 
 // Create employee
-router.post('/employees', createEmployeeValidator, validate, createEmployee);
+router.post('/employees', auth, createEmployeeValidator, validate, createEmployee);
 
 // Get specified employee (by id)
 router.get('/employees/:emp_id', getEmployeeByIdValidator, validate, getEmployeeById);
 
 // Update employee by id
-router.put('/employees/:emp_id', updateEmployeeValidator, validate, updateEmployeeById);
+router.put('/employees/:emp_id', auth, updateEmployeeValidator, validate, updateEmployeeById);
 
-// Delete by query param -> 204
-router.delete('/employees', deleteEmployeeValidator, validate, deleteEmployeeById);
+// Delete - 204
+router.delete('/employees', auth, deleteEmployeeValidator, validate, deleteEmployeeById);
+
+// to make all employee routes protected use: router.use(auth);
 
 module.exports = router;
