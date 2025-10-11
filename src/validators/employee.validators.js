@@ -22,7 +22,7 @@ const getEmployeeByIdValidator = [
 ];
 
 const deleteEmployeeValidator = [
-  query('emp_id').isMongoId().withMessage('Employee ID must be a valid Mongo ID')
+  param('emp_id').isMongoId().withMessage('Employee ID must be a valid Mongo ID')
 ];
 
 module.exports = {

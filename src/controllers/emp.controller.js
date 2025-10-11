@@ -66,12 +66,16 @@ exports.updateEmployeeById = async (req, res) => {
   }
 };
 
-// DELETE /api/v1/emp/employees?eid=xxx (code 204 - no content (no response body needed))
+// DELETE /api/v1/emp/employees/:emp_id (code 204 - no response body needed)
 exports.deleteEmployeeById = async (req, res) => {
   try {
-    const { emp_id } = req.query;
+    const { emp_id } = req.params;
     const deleted = await Employee.findByIdAndDelete(emp_id);
-    if (!deleted) return res.status(404).json({ status: false, message: 'Employee not found' });
+
+    if (!deleted) {
+      return res.status(404).json({ status: false, message: 'Employee not found' });
+    }
+
     return res.status(204).send();
   } catch (err) {
     console.error(err);

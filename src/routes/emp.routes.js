@@ -35,7 +35,7 @@ router.get('/employees/:emp_id', getEmployeeByIdValidator, validate, getEmployee
 router.put('/employees/:emp_id', auth, updateEmployeeValidator, validate, updateEmployeeById);
 
 // Delete - 204
-router.delete('/employees', auth, deleteEmployeeValidator, validate, deleteEmployeeById);
+router.delete('/employees/:emp_id', auth, deleteEmployeeValidator, validate, deleteEmployeeById);
 
 // to make all employee routes protected use: router.use(auth);
 

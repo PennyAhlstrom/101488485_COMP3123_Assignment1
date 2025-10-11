@@ -17,9 +17,17 @@ app.use(cors()); // allows request from frontend (other origins)
 app.use(express.json()); // parses JSON to access req.body
 app.use(morgan('dev')); // logs incoming request to console
 
+// Added for postman debugging
+app.use((req, res, next) => {
+  console.log('[INCOMING REQUEST]', req.method, req.url);
+  next();
+});
+
 
 // routes
 app.use('/api/v1/user', userRoutes);
+// Added for postman debugging
+console.log('✅ userRoutes mounted at /api/v1/user');
 app.use('/api/v1/emp', empRoutes);
 
 // 404 fallback
