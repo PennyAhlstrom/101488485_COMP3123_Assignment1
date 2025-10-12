@@ -38,7 +38,7 @@ exports.createEmployee = async (req, res) => { // Add a new employee to the list
   }
 };
 
-// GET /api/v1/emp/employees/:eid  (code 200)
+// GET /api/v1/emp/employees/:emp_id  (code 200)
 exports.getEmployeeById = async (req, res) => {  // Find a specific employee
   try {
     const { emp_id } = req.params;
@@ -51,7 +51,7 @@ exports.getEmployeeById = async (req, res) => {  // Find a specific employee
   }
 };
 
-// PUT /api/v1/emp/employees/:eid (code 200)
+// PUT /api/v1/emp/employees/:emp_id (code 200)
 exports.updateEmployeeById = async (req, res) => {
   try {
     const { emp_id } = req.params;
