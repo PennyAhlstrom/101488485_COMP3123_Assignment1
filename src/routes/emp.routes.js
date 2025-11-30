@@ -19,6 +19,38 @@ const {
 
 const auth = require('../middleware/auth');
 
+// Route added for Assignment 2
+// SEARCH employees by department or position
+router.get('/search', async (req, res) => {
+  try {
+    const { department, position } = req.query;
+
+    const query = {};
+
+    if (department) {
+      query.department = { $regex: department, $options: "i" }; // case-insensitive
+    }
+
+    if (position) {
+      query.position = { $regex: position, $options: "i" };
+    }
+
+    const employees = await Employee.find(query);
+
+    return res.status(200).json({
+      success: true,
+      count: employees.length,
+      employees
+    });
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      message: err.message
+    });
+  }
+});
+
+
 // Get requests doesnt require authentification but create, update and delete does
 // /api/v1/emp
 
