@@ -19,6 +19,10 @@ const {
 
 const auth = require('../middleware/auth');
 
+// Import the Employee model - Added for Assignment 2
+const Employee = require('../models/Employee');
+
+
 // Route added for Assignment 2
 // SEARCH employees by department or position
 router.get('/search', async (req, res) => {
